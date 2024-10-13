@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import JobList from './components/JobList';
+import JobDetail from './components/JobDetail';
+import AddJobForm from './components/AddJobForm';
+import './styles/style.css';
+ 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ return (
+   <Router>
+     <div className="App">
+       <nav className="nav-links">
+         <Link to="/">Home</Link>
+         <Link to="/jobs">Jobs</Link>
+         <Link to="/JobDetail">JobDetail</Link>
+         <Link to="/add-job">Add Job</Link>
+       </nav>
+ 
+       <Routes>
+         <Route exact path="/" element={<HomePage />} />
+         <Route path="/add-job" element={<AddJobForm />} />
+         <Route path="/jobs" element={<JobList />} />
+         <Route path="/job/:id" element={<JobDetail />} />
+      </Routes>
+     </div>
+   </Router>
+ );
 }
-
+ 
 export default App;
